@@ -7,9 +7,11 @@ import java.util.Scanner;
 
 public class Main {
 
+	private static Scanner input;
+
 	public static void main(String[] args) {
 
-		Scanner input = new Scanner(System.in);
+		input = new Scanner(System.in);
 		PermiteRename rename = new PermiteRename();
 		int porta = 6500;
 		String nome;
@@ -21,7 +23,6 @@ public class Main {
 			Leitura leitura = new Leitura(socket, rename);
 			leitura.start();
 
-			BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
 			String comandos[];
@@ -40,6 +41,7 @@ public class Main {
 				for (String c : comandos) {
 					c.trim();
 				}
+				
 				switch (comandos[0]) {
 				case "bye":
 					out.writeUTF(comandos[0] + ":" + nome);
@@ -47,6 +49,10 @@ public class Main {
 
 				case "send":
 					if (comandos[1].equals("-all")) {
+						msg = "";
+						for (int i = 2; i < comandos.length; i++){
+							msg += comandos[i]+" ";
+						}
 						out.writeUTF(comandos[1] + ":" + nome + ":" + msg);
 
 					} else if (comandos[1].equals("-user")) {
