@@ -11,14 +11,15 @@ public class Main {
 	public static void main(String[] args) {
 
 		Scanner input = new Scanner(System.in);
+		PermiteRename rename = new PermiteRename();
 		int porta = 6500;
 		String nome;
 		String msg = "";
 		String linha = "";		
-				
+						
 		try{
 			Socket socket = new Socket("localhost", porta);
-			Leitura leitura = new Leitura(socket);
+			Leitura leitura = new Leitura(socket, rename);
 			leitura.start();
 			
 			BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -30,8 +31,8 @@ public class Main {
 			nome = input.nextLine();
 			out.writeUTF(nome);
 			menu();
-			do{
-				
+			
+			do{				
 //				CAPTURA MENSAGEM DO LOG E ENVIA
 				System.out.print("Escreva: ");
 				linha = input.nextLine();
@@ -56,13 +57,22 @@ public class Main {
 						}
 						break;
 					case "list": 
+						System.out.println("Nome local: "+nome);
 						out.writeUTF(comandos[0]+":"+nome);
 						break;
 					case "rename": // ISSO AKI FICA NO LADO DO SERVIDOR E NO CLIENTE 
 						out.writeUTF(comandos[0]+":"+comandos[1]+":"+nome);
 						String nometmp = comandos[1];
+						System.out.println("nome temporario: "+ nometmp);
+						System.out.println("nome atual: "+ nome);
 //						RECEBENDO A CONFIRMAÇÃO DA THREAD DE LEITURA EXECUTAR A MUDANÇA
-						nome = nometmp;
+						if(rename.getTroca()){
+							nome = nometmp;
+							System.out.println("Entrou no if true do getTroca");
+						}else{
+							nometmp = null;
+							System.out.println("Entrou no if else do getTroca");
+						}
 //						CASO NÃO DESCARTAR
 						break;
 						

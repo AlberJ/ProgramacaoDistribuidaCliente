@@ -6,9 +6,11 @@ import java.util.logging.Logger;
 
 public class Leitura extends Thread{
 	private Socket socket;
+	private PermiteRename rename;
 	
-	public Leitura (Socket s){
+	public Leitura (Socket s, PermiteRename r){
 		this.socket = s;
+		this.rename = r;
 	}
 	
 	public void run(){
@@ -19,14 +21,20 @@ public class Leitura extends Thread{
 			while (true){ // 
 				msg = in.readUTF();
 				
+				if(msg.equals("1")){
+//	            	COMUNICAR A THREAD PRINCIPAL Q PODE EXECUTAR A MUDANÇA
+	            	rename.setTroca(true);
+	            	System.out.print("Renomeado com sucesso.");
+	            }else if(msg.equals("0")){
+	            	rename.setTroca(false);
+	            	System.out.print("Nome de usuário já em uso.");
+	            }
+				
 				if(!msg.equals("")){	
 					System.out.println();
 					System.out.println("---------------  Mensagem recebida  ---------------");
 		            System.out.println(msg);	            
 		            System.out.println("---------------------------------------------------");
-		            if(msg.equals("Renomeado com sucesso.")){
-//		            	COMUNICAR A THREAD PRINCIPAL Q PODE EXECUTAR A MUDANÇA
-		            }
 		            msg = "";
 		            System.out.print("Escreva: ");
 				}
