@@ -21,13 +21,11 @@ public class Leitura extends Thread{
 			while (true){ // 
 				msg = in.readUTF();
 				
-				if(msg.equals("1")){
+				if(msg.equals("Renomeado com sucesso.")){
 //	            	COMUNICAR A THREAD PRINCIPAL Q PODE EXECUTAR A MUDANÇA
 	            	rename.setTroca(true);
-	            	System.out.print("Renomeado com sucesso.");
-	            }else if(msg.equals("0")){
+	            }else if(msg.equals("Nome de usuário já em uso.")){
 	            	rename.setTroca(false);
-	            	System.out.print("Nome de usuário já em uso.");
 	            }
 				
 				if(!msg.equals("")){	

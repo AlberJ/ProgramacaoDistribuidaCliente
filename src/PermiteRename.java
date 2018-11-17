@@ -16,7 +16,6 @@ public class PermiteRename {
 		this.troca = t;
 		mudanca = true;
 		notifyAll();
-		System.out.println("Entrou na classe PermiteRename em setTroca:"+ this.troca);
 	}
 	
 	public synchronized boolean getTroca(){
@@ -32,7 +31,6 @@ public class PermiteRename {
 		boolean tmp = this.troca;
 		this.troca = false;
 		notifyAll();
-		System.out.println("Entrou na classe PermiteRename em getTroca: "+tmp);
 		mudanca = false;
 		return tmp;
 	}
