@@ -25,6 +25,7 @@ public class Leitura extends Thread{
 		            System.out.println(msg);	            
 		            System.out.println("---------------------------------------------------");
 		            msg = "";
+		            System.out.print("Escreva: ");
 				}
 			}
 			

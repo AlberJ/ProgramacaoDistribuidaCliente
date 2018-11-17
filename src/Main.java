@@ -29,6 +29,7 @@ public class Main {
 			System.out.print("Seu user name: ");
 			nome = input.nextLine();
 			out.writeUTF(nome);
+			menu();
 			do{
 				
 //				CAPTURA MENSAGEM DO LOG E ENVIA
