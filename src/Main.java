@@ -59,7 +59,11 @@ public class Main {
 						out.writeUTF(comandos[0]+":"+nome);
 						break;
 					case "rename": // ISSO AKI FICA NO LADO DO SERVIDOR E NO CLIENTE 
-						out.writeUTF(comandos[0]+":"+nome);
+						out.writeUTF(comandos[0]+":"+comandos[1]+":"+nome);
+						String nometmp = comandos[1];
+//						RECEBENDO A CONFIRMAÇÃO DA THREAD DE LEITURA EXECUTAR A MUDANÇA
+						nome = nometmp;
+//						CASO NÃO DESCARTAR
 						break;
 						
 					default:

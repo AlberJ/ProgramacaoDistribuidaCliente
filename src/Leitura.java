@@ -24,6 +24,9 @@ public class Leitura extends Thread{
 					System.out.println("---------------  Mensagem recebida  ---------------");
 		            System.out.println(msg);	            
 		            System.out.println("---------------------------------------------------");
+		            if(msg.equals("Renomeado com sucesso.")){
+//		            	COMUNICAR A THREAD PRINCIPAL Q PODE EXECUTAR A MUDANÇA
+		            }
 		            msg = "";
 		            System.out.print("Escreva: ");
 				}
