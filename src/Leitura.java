@@ -19,11 +19,11 @@ public class Leitura extends Thread{
 			while (true){ // 
 				msg = in.readUTF();
 				
-				if(!msg.equals("")){					
+				if(!msg.equals("")){	
+					System.out.println();
 					System.out.println("---------------  Mensagem recebida  ---------------");
 		            System.out.println(msg);	            
 		            System.out.println("---------------------------------------------------");
-//		            System.out.print("Escreva: ");
 		            msg = "";
 				}
 			}

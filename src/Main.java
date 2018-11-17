@@ -10,17 +10,12 @@ public class Main {
 	
 	public static void main(String[] args) {
 
-		String nome;
-		int porta = 6500;
-		
-		String msg = "";
-		String linha = "";
 		Scanner input = new Scanner(System.in);
-			
-		System.out.print("Seu user name? ");
-		nome = input.next();
-		menu();
-		
+		int porta = 6500;
+		String nome;
+		String msg = "";
+		String linha = "";		
+				
 		try{
 			Socket socket = new Socket("localhost", porta);
 			Leitura leitura = new Leitura(socket);
@@ -34,7 +29,6 @@ public class Main {
 			System.out.print("Seu user name: ");
 			nome = input.nextLine();
 			out.writeUTF(nome);
-			
 			do{
 				
 //				CAPTURA MENSAGEM DO LOG E ENVIA
@@ -71,7 +65,7 @@ public class Main {
 						System.out.println("Comando inválido!");
 				}
 												
-			}while(!msg.equals("bye")); // TALVEZ MUDAR PARA OBJETO SEJA MAIS INTERESSANTE
+			}while(!msg.equals("bye"));
 			
 			socket.close();
 			System.out.println("Desconectado!");
@@ -88,8 +82,7 @@ public class Main {
 		System.out.println("Enviar mensagem reservada: send -user nome_destinatario sua_mensagem");
 		System.out.println("Visualizar participantes: list");
 		System.out.println("Renomear usuário: rename novo_nome");
-		System.out.print("----------------------------------------------------");
-		System.out.print("");
+		System.out.println("----------------------------------------------------");
 	}
 	
 	
