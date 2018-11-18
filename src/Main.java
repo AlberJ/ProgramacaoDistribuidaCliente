@@ -12,7 +12,7 @@ public class Main {
 		input = new Scanner(System.in);
 		PermiteRename rename = new PermiteRename();
 		int porta = 6500;
-		String nome;
+		String nome ="";
 		String msg = "";
 		String linha = "";
 
@@ -25,10 +25,21 @@ public class Main {
 
 			String comandos[];
 			
+			String nometmp;
+			do{
+				System.out.print("Seu user name: ");
+				nometmp = input.nextLine();
+				out.writeUTF(nometmp);
+				if (rename.getTroca()) {
+					nome = nometmp;
+				} 
+			}while(nome.equals(""));
+			// DESCARTA CASO NÃO NAO CONFIRME
+			nometmp = null;
 			
-			System.out.print("Seu user name: ");
-			nome = input.nextLine();
-			out.writeUTF(nome);
+//			System.out.print("Seu user name: ");
+//			nome = input.nextLine();
+//			out.writeUTF(nome);
 			menu();
 
 			do {
@@ -73,7 +84,7 @@ public class Main {
 
 				case "rename":
 					out.writeUTF(comandos[0] + ":" + comandos[1] + ":" + nome);
-					String nometmp = comandos[1];
+					nometmp = comandos[1];
 					// RECEBE A CONFIRMAÇÃO DA THREAD DE LEITURA E EXECUTAR A
 					// MUDANÇA
 					if (rename.getTroca()) {
