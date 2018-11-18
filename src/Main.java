@@ -1,7 +1,5 @@
-import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -26,7 +24,8 @@ public class Main {
 			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
 			String comandos[];
-
+			
+			
 			System.out.print("Seu user name: ");
 			nome = input.nextLine();
 			out.writeUTF(nome);
@@ -48,8 +47,8 @@ public class Main {
 					break;
 
 				case "send":
+					msg = "";
 					if (comandos[1].equals("-all")) {
-						msg = "";
 						for (int i = 2; i < comandos.length; i++){
 							msg += comandos[i]+" ";
 						}
@@ -57,7 +56,10 @@ public class Main {
 
 					} else if (comandos[1].equals("-user")) {
 						// MANDAR MENSAGEM PARA UM USUARIO
-						out.writeUTF(comandos[1] + ":" + nome + ":" + msg);
+						for (int i = 3; i < comandos.length; i++){
+							msg += comandos[i]+" ";
+						}
+						out.writeUTF(comandos[1]+":"+nome+":"+comandos[2]+":"+msg);
 
 					} else {
 						System.out.println("Comando inválido!");
@@ -106,5 +108,4 @@ public class Main {
 		System.out.println("Renomear usuário: rename novo_nome");
 		System.out.println("----------------------------------------------------");
 	}
-
 }

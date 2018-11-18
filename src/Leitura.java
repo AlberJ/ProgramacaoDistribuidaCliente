@@ -30,9 +30,9 @@ public class Leitura extends Thread{
 				
 				if(!msg.equals("")){	
 					System.out.println();
-					System.out.println("---------------  Mensagem recebida  ---------------");
+//					System.out.println("---------------  Mensagem recebida  ---------------");
 		            System.out.println(msg);	            
-		            System.out.println("---------------------------------------------------");
+//		            System.out.println("---------------------------------------------------");
 		            msg = "";
 		            System.out.print("Escreva: ");
 				}
