@@ -37,16 +37,12 @@ public class Main {
 			// DESCARTA CASO NÃO NAO CONFIRME
 			nometmp = null;
 			
-//			System.out.print("Seu user name: ");
-//			nome = input.nextLine();
-//			out.writeUTF(nome);
-			menu();
+//			menu();
 
 			do {
 				// CAPTURA MENSAGEM DO LOG E ENVIA
 				System.out.print("Escreva: ");
 				linha = input.nextLine();
-				msg = linha;
 				comandos = linha.split(" ");
 				for (String c : comandos) {
 					c.trim();
@@ -100,7 +96,7 @@ public class Main {
 					System.out.println("Comando inválido!");
 				}
 
-			} while (!msg.equals("bye"));
+			} while (!comandos[0].equals("bye"));
 
 			socket.close();
 			System.out.println("Desconectado!");
